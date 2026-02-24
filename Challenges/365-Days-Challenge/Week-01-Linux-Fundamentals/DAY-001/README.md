@@ -39,5 +39,12 @@ A:
 - Terminal: The "window" or GUI application that takes your input (e.g., GNOME Terminal).
 - Shell: The "engine" that processes your commands (e.g., Bash or Zsh). 
   Think of the Terminal as the car's body and the Shell as the engine.
+
+4. RESOURCES
+
+-[Difference Between Console/Terminal/Shell ](https://youtu.be/LdJkq8D11fU?si=BO42GSvylicMy8kt)
+-[What is Kernel ](https://youtu.be/IvGdY6luTtU?si=ucaYEpBXRft83xVW)
+
 =========================================
+
 
