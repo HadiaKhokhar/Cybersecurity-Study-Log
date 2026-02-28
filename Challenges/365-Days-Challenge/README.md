@@ -85,7 +85,7 @@ Outcome: Job-ready / bounty-ready skillset.
 ## Current Status
 
 - Start Date: [22-02-2026]
-- Day: 01 / 365
+- Day: 02 / 365
 - Week: 01 / 52
 - Current Focus: Linux Fundamentals
 ---
