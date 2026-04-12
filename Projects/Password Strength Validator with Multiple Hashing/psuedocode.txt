@@ -1,0 +1,123 @@
+START
+
+----- MAIN FUNCTION -----
+FUNCTION main
+    SET event listener on "Validate Button"
+        CALL validatePassword
+
+    SET event listener on "Clear Button"
+        CALL clearFields
+END FUNCTION
+
+---- Validate Password Flow -----
+FUNCTION validatePassword
+
+    // Step 1: Get user input
+    password ← GET value from input field
+
+    IF password is empty THEN
+        DISPLAY "Please enter a password"
+        RETURN
+    END IF
+
+    // Step 2: Generate hashes
+    md5Hash ← hashMD5(password)
+    sha256Hash ← hashSHA256(password)
+    bcryptHash ← hashBcrypt(password)
+
+    // Step 3: Display hashes
+    DISPLAY md5Hash in MD5 section
+    DISPLAY sha256Hash in SHA-256 section
+    DISPLAY bcryptHash in bcrypt section
+
+    // Step 4: Check breach database
+    isCompromised ← checkBreach(sha256Hash)
+
+    IF isCompromised = TRUE THEN
+        DISPLAY "⚠ Password has been breached!"
+    ELSE
+        DISPLAY " Password is safe"
+    END IF
+
+END FUNCTION
+
+
+
+------ INDIVIDUAL HASHING FUNCTION ------
+
+-- FOR MD5 --
+FUNCTION hashMD5(password)
+    RETURN MD5 hash of password
+END FUNCTION#
+
+-- FOR SHA256 --
+FUNCTION hashSHA256(password)
+    RETURN SHA-256 hash of password
+END FUNCTION
+
+-- FOR BYCRYPT --
+FUNCTION hashBcrypt(password)
+    salt ← GENERATE salt
+    RETURN bcrypt hash of password WITH salt
+END FUNCTION 
+
+-- FOR ARGON --
+FUNCTION hashArgon(password)
+    salt ← GENERATE salt
+    RETURN argon hash of password WITH salt
+END FUNCTION 
+
+
+----- BREACH LOGIC -----
+USER PASSWORD
+     ↓
+SHA-1 HASH (client-side)
+     ↓
+split into prefix + suffix
+     ↓
+send prefix → HIBP API
+     ↓
+receive list of suffixes
+     ↓
+compare locally
+     ↓
+RESULT: breached / safe
+FUNCTION checkBreach(sha256Hash)
+
+    // Option 1: Local wordlist check
+    FOR each hash IN breachDatabase
+        IF hash = sha256Hash THEN
+            RETURN TRUE
+        END IF
+    END FOR
+
+    RETURN FALSE
+
+
+    // Option 2: API (Have I Been Pwned style)
+    prefix ← FIRST 5 characters of sha256Hash
+    suffix ← REMAINING characters
+
+    response ← API request with prefix
+
+    FOR each returnedHash IN response
+        IF returnedHash suffix = suffix THEN
+            RETURN TRUE
+        END IF
+    END FOR
+
+    RETURN FALSE
+END FUNCTION
+
+
+----- CLEAR LOGIC ----
+FUNCTION clearFields
+
+    CLEAR password input field
+
+    CLEAR MD5 display
+    CLEAR SHA-256 display
+    CLEAR bcrypt display
+
+    CLEAR breach result message
+END FUNCTION
