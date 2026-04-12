@@ -1,0 +1,50 @@
+START
+
+INPUT password
+
+SET length = length of password
+
+SET hasLower = FALSE
+SET hasUpper = FALSE
+SET hasDigit = FALSE
+SET hasSpecial = FALSE
+
+FOR each character in password
+    IF character is lowercase letter
+        SET hasLower = TRUE
+    ELSE IF character is uppercase letter
+        SET hasUpper = TRUE
+    ELSE IF character is digit
+        SET hasDigit = TRUE
+    ELSE
+        SET hasSpecial = TRUE
+END FOR
+
+// Initialize score
+SET score = 0
+
+// Length scoring
+IF length >= 8
+    score = score + 1
+IF length >= 12
+    score = score + 1
+
+// Character variety scoring
+IF hasLower == TRUE
+    score = score + 1
+IF hasUpper == TRUE
+    score = score + 1
+IF hasDigit == TRUE
+    score = score + 1
+IF hasSpecial == TRUE
+    score = score + 1
+
+// Strength evaluation
+IF score <= 2
+    PRINT "Weak Password"
+ELSE IF score <= 4
+    PRINT "Moderate Password"
+ELSE
+    PRINT "Strong Password"
+
+END

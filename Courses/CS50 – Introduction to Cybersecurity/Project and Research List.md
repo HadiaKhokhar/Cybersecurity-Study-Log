@@ -49,6 +49,11 @@ Session vs Cookies: https://www.youtube.com/watch?v=K4UKj5htg-E
 - Apply 2FA to all major accounts   
 - Create a 4-digit brute-force Python script  
 - Simulate cracking a 4-digit mobile PIN (educational demo only)   
+- Android Forensic Data Extractor + Viewer
+    Create a simple workflow that:
+    1. Extracts data from an Android phone (ADB)
+    2. Parses it into readable format (iLEAPP)
+    3. Views/analyzes it (Autopsy)
 - Build a Password Complexity Calculator  
 - Create a Simple Brute-Force Simulator  
 - Implement different hashing algorithms in Python  
